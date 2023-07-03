@@ -1,0 +1,8 @@
+<nav class="sticky top-0 z-50 flex sm:justify-center space-x-4 bg-slate-800 h-14">
+  <a
+    *ngFor="let item of menuBar"
+    [routerLink]="item.path"
+    class="px-3 py-2 text-slate-700 font-medium hover:bg-orange-400 hover:text-slate-900 text-center content-center mt-2"
+    ><p class="text-white">{{ item.title }}</p></a
+  >
+</nav>
