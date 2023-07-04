@@ -1,0 +1,33 @@
+<div class="p-36">
+  <form class="grid grid-cols-1 items-center">
+    <input
+      type="text"
+      placeholder="ชื่อสินค้า"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+    />
+
+    <select
+      #dropdown
+      (change)="onOptionChange(dropdown.value)"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-4"
+    >
+      <option value="">Select an option</option>
+      <option *ngFor="let option of optionsData" [value]="option" [id]="option">
+        {{ option }}
+      </option>
+    </select>
+
+    <input
+      type="number"
+      placeholder="ราคาสินค้า"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-4"
+    />
+
+    <input
+      type="text"
+      placeholder="Thumbnail URL"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-4"
+    />
+    <button type="submit" class="bg-slate-300 mt-7 h-8 rounded-lg">Submit</button>
+  </form>
+</div>

@@ -9,6 +9,13 @@ import { ProductComponent } from './product/product.component';
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
 import { CategoryComponent } from './category/category.component';
+import { AdminComponent } from './admin/admin.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { WelcomeComponent } from './admin/welcome/welcome.component';
+import { AdminMenuComponent } from './admin/admin.component/menu/menu.component';
+import { ListComponent } from './admin/admin.component/list/list.component';
+import { CreateComponent } from './admin/admin.component/create/create.component';
+import { AddComponent } from './admin/add/add.component';
 
 
 @NgModule({
@@ -20,8 +27,14 @@ import { CategoryComponent } from './category/category.component';
     HomeComponent,
     ContactComponent,
     CategoryComponent,
+    AdminComponent,
+    WelcomeComponent,
+    AdminMenuComponent,
+    ListComponent,
+    CreateComponent,
+    AddComponent
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule,ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
