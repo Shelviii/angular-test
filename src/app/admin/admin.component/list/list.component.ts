@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DatabaseService } from '../../../database/database.service';
 
 interface product {
   idProduct: number;
@@ -20,7 +21,11 @@ export class ListComponent implements OnInit {
     { idProduct: 4, title: 'Product4', price: 5000, category: 2 },
     { idProduct: 5, title: 'Product5', price: 6000, category: 1 },
   ];
-  constructor() {}
+  constructor(private dataService: DatabaseService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  //  const data = this.dataService.fetchData()
+  //  console.log(data);
+   
+  }
 }
