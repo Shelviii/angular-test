@@ -5,7 +5,7 @@ const { Pool } = require("pg");
 const app = express();
 
 var corsOptions = {
-  origin: "http://localhost:8081",
+  origin: "http://localhost:4200",
 };
 
 app.use(cors(corsOptions));
@@ -21,9 +21,13 @@ const pool = new Pool({
   password: "12345678",
   port: 5432,
 });
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`Server is running on port http://localhost:${PORT}/`);
+});
 
-app.get("/", (req, res) => {
-  pool.query("SELECT * FROM product", (error, results) => {
+app.get("/product", (req, res) => {
+  pool.query("SELECT * FROM product where active = true", (error, results) => {
     if (error) {
       console.error(error);
       res.status(500).json({ error: "Internal server error" });
@@ -32,9 +36,3 @@ app.get("/", (req, res) => {
     }
   });
 });
-
-const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
-  console.log(`Server is running on port http://localhost:${PORT}/`);
-});
-

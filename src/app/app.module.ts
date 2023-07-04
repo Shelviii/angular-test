@@ -16,7 +16,7 @@ import { AdminMenuComponent } from './admin/admin.component/menu/menu.component'
 import { ListComponent } from './admin/admin.component/list/list.component';
 import { CreateComponent } from './admin/admin.component/create/create.component';
 import { AddComponent } from './admin/add/add.component';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -32,9 +32,14 @@ import { AddComponent } from './admin/add/add.component';
     AdminMenuComponent,
     ListComponent,
     CreateComponent,
-    AddComponent
+    AddComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule,ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
