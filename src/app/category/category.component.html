@@ -1,5 +1,19 @@
 <app-menu></app-menu>
-<div class="container w-full h-screen  mx-auto pt-16">
-
+<div class="container w-4/5 h-screen mx-auto pt-16">
+  <h1 class="text-5xl ">หมวดหมู่สินค้าทั้งหมด</h1>
+  <div class="mt-10" *ngFor="let ele of data">
+    <section>
+      <div
+        class="mx-auto w-96 h-18 rounded-3xl  hover:cursor-pointer"
+        (click)="navigateToProduct(ele.id_category)"
+      >
+        <p
+          class="flex justify-center items-center h-full text-2xl z-50 hover:underline"
+        >
+          {{ ele.category }}
+        </p>
+      </div>
+    </section>
+  </div>
 </div>
 <app-footer></app-footer>

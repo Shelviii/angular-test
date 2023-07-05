@@ -1,20 +1,40 @@
 <app-menu [cart]="items"></app-menu>
-<div class="container w-full h-full mx-auto mt-10">
-  <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-    <div *ngFor="let img of thumbnail">
-      <img class="h-auto max-w-full rounded-lg" [src]="img" [alt]="img" />
-      <div class="mt-2 flex justify-center">
-        <input type="number" [id]="img" #itemsInput class="rounded-lg h-9" placeholder="จำนวนสินค้า"/>
-        <button
-          type="button"
-          id="addItems"
-          (click)="addNewItems(itemsInput.value)"
-          class="bg-slate-50 ml-2 rounded-lg w-28"
-        >
-          เพิ่มลงในตะกร้า
-        </button>
+<div *ngIf="!foundData; else showData" class="container mx-auto w-full h-full">
+  <p class="text-center mt-40  text-8xl">Not Found Data</p>
+</div>
+<ng-template #showData>
+  <div class="container w-full h-full mx-auto mt-10">
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <div *ngFor="let ele of data">
+        <img
+          class="h-96 w-auto rounded-lg"
+          [src]="
+            ele.thumbnail
+              ? ele.thumbnail
+              : 'https://climate.onep.go.th/wp-content/uploads/2020/01/default-image.jpg'
+          "
+          [alt]="ele.thumbnail"
+        />
+        <div class="mt-2 flex justify-center">
+          <input
+            type="number"
+            [id]="ele.id_product"
+            #itemsInput
+            class="rounded-lg h-9 border-2 border-black"
+            placeholder="จำนวนสินค้า"
+          />
+          <button
+            type="button"
+            id="addItems"
+            (click)="addNewItems(itemsInput.value)"
+            class="ml-2 rounded-lg w-28 border-2 border-black"
+          >
+            เพิ่มลงในตะกร้า
+          </button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</ng-template>
+
 <app-footer></app-footer>

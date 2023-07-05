@@ -1,33 +1,60 @@
 <div class="p-36">
-  <form class="grid grid-cols-1 items-center">
+  <form
+    class="grid grid-cols-1 items-center"
+    (ngSubmit)="onSubmit()"
+    [formGroup]="createProduct"
+  >
+    <label class=" mt-4">ชื่อสินค้า</label>
     <input
       type="text"
       placeholder="ชื่อสินค้า"
-      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      formControlName="title"
+      class=" text-sm rounded-lg w-full p-2.5 border-2 border-slate-400"
     />
 
+    <label class=" mt-4">หมวดหมู่สินค้า</label>
     <select
       #dropdown
       (change)="onOptionChange(dropdown.value)"
-      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-4"
+      [value]="createProduct.get('category')?.value"
+      class="text-sm rounded-lg w-full p-2.5 border-2 border-slate-400"
     >
       <option value="">Select an option</option>
-      <option *ngFor="let option of optionsData" [value]="option" [id]="option">
-        {{ option }}
+      <option
+        *ngFor="let option of optionsData"
+        [value]="option['id_category']"
+        [id]="option['id_category']"
+        [selected]="
+          createProduct.get('category')?.value === option['id_category']
+        "
+      >
+        {{ option["category"] }}
       </option>
     </select>
-
+    <label class=" mt-4">ราคาสินค้า</label>
     <input
       type="number"
       placeholder="ราคาสินค้า"
-      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-4"
+      formControlName="price"
+      class="text-sm rounded-lg w-full p-2.5 border-2 border-slate-400"
     />
 
+    <label class=" mt-4">URL รูปภาพ</label>
     <input
       type="text"
       placeholder="Thumbnail URL"
-      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-4"
+      formControlName="thumbnail"
+      class="text-sm rounded-lg w-full p-2.5 border-2 border-slate-400"
     />
-    <button type="submit" class="bg-slate-300 mt-7 h-8 rounded-lg">Submit</button>
+
+    <label class=" mt-4">รายละเอียดสินค้า</label>
+    <textarea
+      formControlName="detail"
+      class="text-sm rounded-lg w-full p-2.5 border-2 border-slate-400"
+    >
+    </textarea>
+    <button type="submit" class="mt-7 h-8 rounded-lg bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 text-white">
+      {{ isEditing ? 'Update' : 'Submit' }}
+    </button>
   </form>
 </div>

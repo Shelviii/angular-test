@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { DatabaseService } from '../database/database.service';
+import { Product } from '../database/enum/product.enum';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -6,28 +9,33 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product.component.css'],
 })
 export class ProductComponent implements OnInit {
-  thumbnail: string[] = [
-    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image.jpg',
-    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg',
-    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg',
-    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg',
-    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg',
-    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-5.jpg',
-    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-6.jpg',
-    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-7.jpg',
-    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-8.jpg',
-    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-9.jpg',
-    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-10.jpg',
-    'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-11.jpg'
-
-  ];
   items: number = 0;
+  data: Product[] = [];
+  foundData:boolean = true;
+  constructor(
+    private dataService: DatabaseService,
+    private router: ActivatedRoute
+  ) {}
 
-  constructor() {}
+  ngOnInit(): void {
+    const id = this.router.snapshot.paramMap.get('id');
+    const dataRoute: Product[] = history.state.data;
+    console.log(dataRoute);
 
-  ngOnInit(): void {}
+    if (id && dataRoute) {
+      if (dataRoute.length > 0) {
+        this.data = dataRoute;
+      }else{
+        this.foundData = false
+      }
+    } else {
+      this.dataService.getProduct().subscribe((res) => {
+        this.data = res;
+      });
+    }
+  }
 
-  addNewItems(value:string) {
+  addNewItems(value: string) {
     this.items += Number(value);
   }
 }

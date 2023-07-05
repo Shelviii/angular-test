@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { DatabaseService } from '../../../app/database/database.service';
+import { Category } from '../../../app/database/enum/product.enum';
 
 interface MenuType {
   title: string;
@@ -17,6 +19,8 @@ export class MenuComponent implements OnInit {
     { title: 'หมวดหมู่สินค้า', path: '/category' },
     { title: 'ติดต่อเรา', path: '/contact' },
   ];
+  category: Category[] = [];
+  toggleCate: boolean = false;
 
   constructor() {}
 

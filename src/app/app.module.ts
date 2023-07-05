@@ -17,6 +17,7 @@ import { ListComponent } from './admin/admin.component/list/list.component';
 import { CreateComponent } from './admin/admin.component/create/create.component';
 import { AddComponent } from './admin/add/add.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AdminCategoryComponent } from './admin/category/category.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { HttpClientModule } from '@angular/common/http';
     ListComponent,
     CreateComponent,
     AddComponent,
+    AdminCategoryComponent
   ],
   imports: [
     BrowserModule,
