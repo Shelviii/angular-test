@@ -1,5 +1,56 @@
 <app-menu></app-menu>
-<div class="w-full h-screen mx-auto pt-16">
+<div class="w-full h-screen mx-auto pt-16 container">
+  <div class="p-10">
+    <p class="text-5xl">ติดต่อเรา</p>
+    <p class="mt-6">
+      สามารติดต่อเราได้ 24/ชม. เราจะตอบคุณให้เร็วที่สุดทาง e-mail หรือ
+      เบอร์โทรติดต่อที่คุณกรอกมา
+    </p>
+  </div>
+  <div class="p-10 flex">
+    <form class="mx-auto w-3/4">
+      <label>หัวข้อที่จะติดต่อ</label>
+      <input
+        type="text"
+        class="border-2 border-slate-500 rounded-lg w-full h-10 mb-10 focus:ring-blue-500 p-2.5"
+        placeholder="หัวข้อที่จะติดต่อ"
+      />
 
+      <label>รายละเอียดเพิ่มเติม</label>
+      <textarea
+        class="border-2 border-slate-500 rounded-lg w-full mb-10 focus:ring-blue-500 p-2.5"
+      >
+      </textarea>
+
+      <label>ชื่อผู้ติดต่อ</label>
+      <input
+        type="text"
+        class="border-2 border-slate-500 rounded-lg w-full h-10 mb-10 focus:ring-blue-500 p-2.5"
+        placeholder="ชื่อผู้ติดต่อ"
+      />
+
+      <label>เบอร์โทรผู้ติดต่อ</label>
+      <input
+        type="text"
+        class="border-2 border-slate-500 rounded-lg w-full h-10 mb-10 focus:ring-blue-500 p-2.5"
+        placeholder="08x-xxx-xxxx"
+        inputmode="numeric"
+      />
+
+      <label>e-mail</label>
+      <input
+        type="text"
+        class="border-2 border-slate-500 rounded-lg w-full h-10 mb-10 focus:ring-blue-500 p-2.5"
+        placeholder="e-mail"
+      />
+
+      <button
+        type="submit"
+        class="mt-7 w-full h-10 rounded-lg bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 text-white"
+      >
+        Send
+      </button>
+    </form>
+  </div>
 </div>
 <app-footer></app-footer>

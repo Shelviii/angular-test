@@ -100,22 +100,38 @@ app.get("/category", (req, res) => {
   });
 });
 
-app.post('/category', (req, res) => {
+app.post("/category", (req, res) => {
   const { category } = req.body;
   pool.query(
-    'INSERT INTO category (category) VALUES ($1)',
+    "INSERT INTO category (category) VALUES ($1)",
     [category],
     (error, results) => {
       if (error) {
         console.error(error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({ error: "Internal server error" });
       } else {
-        res.json({ status: 200, message: 'Data inserted successfully' });
+        res.json({ status: 200, message: "Data inserted successfully" });
       }
     }
   );
 });
 
+app.put("/category/:id", (req, res) => {
+  let { category, active, updated_datetime, id_category } = req.body;
+  updated_datetime = moment();
+  pool.query(
+    "UPDATE category SET category = $1 ,active = $2, updated_datetime = $3 WHERE id_category = $4",
+    [category, active, updated_datetime, id_category],
+    (error, results) => {
+      if (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal server errror" });
+      } else {
+        res.json({ status: 200, message: "Data updated successfully" });
+      }
+    }
+  );
+});
 
 app.listen(PORT, () => {
   console.log(`Server is running on port http://localhost:${PORT}/`);

@@ -8,6 +8,7 @@ import { AdminComponent } from './admin/admin.component';
 import { WelcomeComponent } from './admin/welcome/welcome.component';
 import { AddComponent } from './admin/add/add.component';
 import { AdminCategoryComponent } from './admin/category/category.component';
+import { AdminContactComponent } from './admin/contact/contact.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'admin/add', component: AddComponent },
   { path: 'admin/edit/:id', component: AddComponent },
   { path: 'admin/category', component: AdminCategoryComponent },
+  { path: 'admin/contact', component: AdminContactComponent },
 ];
 
 @NgModule({

@@ -50,8 +50,6 @@ export class CreateComponent implements OnInit {
     this.dataService.getCategory().subscribe((res) => {
       this.optionsData = res;
     });
-    console.log(this.isEditing);
-    
   }
 
   onOptionChange(selectedValue: string | null) {
