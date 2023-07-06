@@ -1,6 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DatabaseService } from '../../../app/database/database.service';
 import { Category } from '../../../app/database/enum/product.enum';
+import { Router } from '@angular/router';
+import { ProductService } from 'src/app/product.service';
 
 interface MenuType {
   title: string;
@@ -22,7 +24,16 @@ export class MenuComponent implements OnInit {
   category: Category[] = [];
   toggleCate: boolean = false;
 
-  constructor() {}
+  constructor(private router: Router, private productService: ProductService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {console.log(this.cart,'menu');
+  }
+  
+  getItem() {
+    const data = this.productService.getItems();
+    this.cart = data;
+  }
+  navigate() {
+    this.router.navigate(['cart']);
+  }
 }
