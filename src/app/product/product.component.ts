@@ -20,8 +20,6 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
     const id = this.router.snapshot.paramMap.get('id');
     const dataRoute: Product[] = history.state.data;
-    console.log(dataRoute);
-
     if (id && dataRoute) {
       if (dataRoute.length > 0) {
         this.data = dataRoute;

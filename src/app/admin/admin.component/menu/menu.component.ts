@@ -16,5 +16,9 @@ export class AdminMenuComponent implements OnInit {
   }
   delCookies(){
     this.cookie.deleteAll()
+    localStorage.clear()
+  }
+  delLocal(){
+    localStorage.removeItem('productData')
   }
 }

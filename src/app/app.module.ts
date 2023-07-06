@@ -19,6 +19,7 @@ import { AddComponent } from './admin/add/add.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminCategoryComponent } from './admin/category/category.component';
 import { AdminContactComponent } from './admin/contact/contact.component';
+import { AdminContactPreviewComponent } from './admin/contact/preview/preview.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { AdminContactComponent } from './admin/contact/contact.component';
     CreateComponent,
     AddComponent,
     AdminCategoryComponent,
-    AdminContactComponent
+    AdminContactComponent,
+    AdminContactPreviewComponent
   ],
   imports: [
     BrowserModule,

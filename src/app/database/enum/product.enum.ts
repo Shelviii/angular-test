@@ -1,4 +1,4 @@
-import { AbstractControl } from "@angular/forms";
+import { AbstractControl } from '@angular/forms';
 
 export interface Product {
   id_product: number;
@@ -9,7 +9,7 @@ export interface Product {
   active: boolean;
   created_datetime: string;
   updated_datetime: string;
-  thumbnail:string;
+  thumbnail: string;
 }
 
 export interface ProductDTO {
@@ -26,4 +26,27 @@ export interface Category {
   active: boolean;
   created_datetime: string;
   updated_datetime: string;
+}
+
+export interface Contact {
+  id_contact: number;
+  title: string;
+  detail: string;
+  name: string;
+  tel: string;
+  email: string;
+  active: boolean;
+  reading: boolean;
+  created_datetime: string;
+  updated_datetime: string;
+}
+
+export interface ContactDTO {
+  title: AbstractControl<string, string>;
+  detail: AbstractControl<string, string>;
+  name: AbstractControl<string, string>;
+  tel: AbstractControl<string, string>;
+  email: AbstractControl<string, string>;
+  active: AbstractControl<boolean | null, boolean>;
+  reading: AbstractControl<boolean | null, boolean>;
 }

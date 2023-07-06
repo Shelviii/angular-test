@@ -30,7 +30,7 @@ app.get("/product", (req, res) => {
     (error, results) => {
       if (error) {
         console.error(error);
-        res.status(500).json({ error: "Internal server error" });
+        res.json({ status: 500, error: "Internal server error" });
       } else {
         res.json(results.rows);
       }
@@ -46,7 +46,7 @@ app.get("/product/type/:id", (req, res) => {
     (error, results) => {
       if (error) {
         console.error(error);
-        res.status(500).json({ error: "Internal server error" });
+        res.json({ status: 500, error: "Internal server error" });
       } else {
         res.json(results.rows);
       }
@@ -62,7 +62,7 @@ app.post("/product", (req, res) => {
     (error, results) => {
       if (error) {
         console.error(error);
-        res.status(500).json({ error: "Internal server errror" });
+        res.json({ status: 500, error: "Internal server errror" });
       } else {
         res.json({ status: 200, message: "Data inserted successfully" });
       }
@@ -81,7 +81,7 @@ app.put("/product/:id", (req, res) => {
     (error, results) => {
       if (error) {
         console.error(error);
-        res.status(500).json({ error: "Internal server errror" });
+        res.json({ status: 500, error: "Internal server errror" });
       } else {
         res.json({ status: 200, message: "Data updated successfully" });
       }
@@ -93,7 +93,7 @@ app.get("/category", (req, res) => {
   pool.query("SELECT * FROM category where active = true", (error, results) => {
     if (error) {
       console.error(error);
-      res.status(500).json({ error: "Internal server error" });
+      res.json({ status: 500, error: "Internal server error" });
     } else {
       res.json(results.rows);
     }
@@ -108,7 +108,7 @@ app.post("/category", (req, res) => {
     (error, results) => {
       if (error) {
         console.error(error);
-        res.status(500).json({ error: "Internal server error" });
+        res.json({ status: 500, error: "Internal server error" });
       } else {
         res.json({ status: 200, message: "Data inserted successfully" });
       }
@@ -125,9 +125,53 @@ app.put("/category/:id", (req, res) => {
     (error, results) => {
       if (error) {
         console.error(error);
-        res.status(500).json({ error: "Internal server errror" });
+        res.json({ status: 500, error: "Internal server errror" });
       } else {
         res.json({ status: 200, message: "Data updated successfully" });
+      }
+    }
+  );
+});
+
+app.get("/contact", (req, res) => {
+  pool.query("SELECT * FROM contact WHERE active = true ORDER BY created_datetime DESC", (err, results) => {
+    if (err) {
+      console.error(err);
+      res.json({ status: 500, error: "Internal server errror" });
+    } else {
+      res.json(results.rows);
+    }
+  });
+});
+
+app.post("/contact", (req, res) => {
+  const { title, detail, name, tel, email } = req.body;
+  pool.query(
+    "INSERT INTO contact (title,detail,name,tel,email) VALUES ($1,$2,$3,$4,$5)",
+    [title, detail, name, tel, email],
+    (err, results) => {
+      if (err) {
+        console.error(err);
+        res.json({ status: 500, error: "Internal server errror" });
+      } else {
+        res.json({ status: 200, message: "Data Created Successfully" });
+      }
+    }
+  );
+});
+
+app.put("/contact/:id", (req, res) => {
+  const { id } = req.params;
+  const { title, detail, name, tel, email, active, reading } = req.body;
+  pool.query(
+    "UPDATE contact SET title = $1, detail = $2, name = $3, tel = $4, email = $5, active = $6, reading = $7  WHERE id_contact = $8",
+    [title, detail, name, tel, email, active, reading, id],
+    (err, results) => {
+      if (err) {
+        console.error(err);
+        res.json({ status: 500, error: "Internal server errror" });
+      } else {
+        res.json({ status: 200, message: "Data Updated Successfully" });
       }
     }
   );

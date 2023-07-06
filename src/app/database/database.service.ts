@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Product, Category, ProductDTO } from './enum/product.enum';
+import { Product, Category, ProductDTO, Contact, ContactDTO } from './enum/product.enum';
 import { Observable } from 'rxjs';
 import { FormGroup } from '@angular/forms';
 
@@ -39,5 +39,17 @@ export class DatabaseService {
 
   editCategory(id: number, req: Category): Observable<any> {
     return this.http.put(this.url + `category/${id}`, req);
+  }
+
+  getContact(): Observable<any> {
+    return this.http.get<any>(this.url + 'contact');
+  }
+
+  createContact(req: ContactDTO): Observable<any> {
+    return this.http.post(this.url + 'contact', req);
+  }
+
+  editContact(id: number, req: ContactDTO): Observable<any> {
+    return this.http.put<any>(this.url + `contact/${id}`, req);
   }
 }

@@ -35,7 +35,11 @@ export class CreateComponent implements OnInit {
   ngOnInit(): void {
     const id = this.router.snapshot.paramMap.get('id');
     const data = history.state.data;
+    const local: any = localStorage.getItem('productData');
+    const localData: Product = JSON.parse(local);
+
     if (id && data) {
+      localStorage.setItem('productData', JSON.stringify(data));
       this.idEdit = Number(id);
       this.createProduct.setValue({
         title: data.title,
@@ -44,6 +48,17 @@ export class CreateComponent implements OnInit {
         detail: data.detail,
         thumbnail: data.thumbnail,
         active: data.active,
+      });
+      this.isEditing = true;
+    } else if (localData) {
+      this.idEdit = Number(id);
+      this.createProduct.setValue({
+        title: localData.title,
+        category: localData.category,
+        price: localData.price,
+        detail: localData.detail,
+        thumbnail: localData.thumbnail,
+        active: localData.active,
       });
       this.isEditing = true;
     }

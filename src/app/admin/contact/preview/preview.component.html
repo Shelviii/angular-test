@@ -1,26 +1,25 @@
-<app-menu></app-menu>
-<div class="w-full h-screen mx-auto pt-16 container">
-  <div class="p-10">
-    <p class="text-5xl">ติดต่อเรา</p>
-    <p class="mt-6">
-      สามารติดต่อเราได้ 24/ชม. เราจะติดต่อคุณให้เร็วที่สุดทาง e-mail หรือ
-      เบอร์โทรติดต่อที่คุณกรอกมา
-    </p>
-  </div>
+<div class="flex">
+  <admin-menu></admin-menu>
   <div class="p-10 flex">
-    <form class="mx-auto w-3/4" [formGroup]="contact" (ngSubmit)="onSubmit()">
-      <label>หัวข้อที่จะติดต่อ</label>
+    <form
+      class="mx-auto w-3/4"
+      [formGroup]="contactForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <label>หัวข้อ</label>
       <input
         type="text"
         class="border-2 border-slate-500 rounded-lg w-full h-10 mb-10 focus:ring-blue-500 p-2.5"
         formControlName="title"
-        placeholder="หัวข้อที่จะติดต่อ"
+        placeholder="หัวข้อ"
+        readonly
       />
 
       <label>รายละเอียดเพิ่มเติม</label>
       <textarea
         formControlName="detail"
         class="border-2 border-slate-500 rounded-lg w-full mb-10 focus:ring-blue-500 p-2.5"
+        readonly
       >
       </textarea>
 
@@ -30,6 +29,7 @@
         class="border-2 border-slate-500 rounded-lg w-full h-10 mb-10 focus:ring-blue-500 p-2.5"
         placeholder="ชื่อผู้ติดต่อ"
         formControlName="name"
+        readonly
       />
 
       <label>เบอร์โทรผู้ติดต่อ</label>
@@ -39,6 +39,7 @@
         placeholder="08x-xxx-xxxx"
         inputmode="numeric"
         formControlName="tel"
+        readonly
       />
 
       <label>e-mail</label>
@@ -47,15 +48,29 @@
         class="border-2 border-slate-500 rounded-lg w-full h-10 mb-10 focus:ring-blue-500 p-2.5"
         placeholder="e-mail"
         formControlName="email"
+        readonly
       />
+
+      <label class="relative inline-flex items-center cursor-pointer">
+        <input
+          type="checkbox"
+          value=""
+          class="sr-only peer"
+          [checked]="this.contactForm.value.reading ? true : false"
+          formControlName="reading"
+        />
+        <div
+          class="w-11 h-6 bg-gray-200 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"
+        ></div>
+        <span class="ml-3 text-sm font-medium">ติดต่อกลับแล้ว</span>
+      </label>
 
       <button
         type="submit"
         class="mt-7 w-full h-10 rounded-lg bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 text-white"
       >
-        Send
+        Submit
       </button>
     </form>
   </div>
 </div>
-<app-footer></app-footer>

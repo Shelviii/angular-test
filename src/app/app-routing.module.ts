@@ -9,6 +9,7 @@ import { WelcomeComponent } from './admin/welcome/welcome.component';
 import { AddComponent } from './admin/add/add.component';
 import { AdminCategoryComponent } from './admin/category/category.component';
 import { AdminContactComponent } from './admin/contact/contact.component';
+import { AdminContactPreviewComponent } from './admin/contact/preview/preview.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'admin/edit/:id', component: AddComponent },
   { path: 'admin/category', component: AdminCategoryComponent },
   { path: 'admin/contact', component: AdminContactComponent },
+  { path: 'admin/contact/preview/:id' ,component:AdminContactPreviewComponent},
 ];
 
 @NgModule({
