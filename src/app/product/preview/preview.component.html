@@ -1,0 +1,65 @@
+<div class="flex mt-12">
+  <div class="flex-row w-full mx-auto ml-24 mr-24">
+    <div class="border-2 border-slate-700 w-2/4 h-2/4 mx-auto rounded-lg">
+      <img [src]="this.data?.thumbnail" class="object-cover w-full h-full rounded-lg" />
+      <div class="mt-2 w-full justify-center flex">
+        <button
+          type="button"
+          id="addItems"
+          (click)="increment()"
+          class="rounded-lg w-8 h-8 hover:bg-red-100"
+        >
+          <p class="text-red-500 text-xl">+</p>
+        </button>
+        <input
+          type="text"
+          #itemsInput
+          class="w-14 rounded-lg h-9 p-2.5 cursor-default text-center"
+          [value]="this.counter === 0 ? '' : this.counter"
+          readonly
+        />
+        <button
+          type="button"
+          id="addItems"
+          (click)="decrement()"
+          class="rounded-lg w-8 h-8 hover:bg-red-100"
+        >
+          <p class="text-red-500 text-xl">-</p>
+        </button>
+        <button
+          type="button"
+          id="addItems"
+          (click)="addNewItems(itemsInput.value)"
+          class="ml-2"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="mt-14 border-t-2 border-slate-400">
+      <h1 class="text-3xl mt-2">รายละเอียดสินค้า</h1>
+      <div class="mt-4 whitespace-nowrap">
+        <p class="mt-2 font-bold">ชื่อสินค้า : {{ this.data?.title }}</p>
+        <p class="mt-2 font-bold">หมวดหมู่สินค้า : {{ this.data?.cate }}</p>
+        <p class="mt-2 font-bold">ราคา : {{ this.data?.price }}</p>
+        <p class="mt-2 font-bold">
+          รายละเอียดเพิ่มเติม : {{ this.data?.detail }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

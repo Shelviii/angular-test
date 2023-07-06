@@ -1,40 +1,68 @@
-<app-menu [cart]="items"></app-menu>
 <div *ngIf="!foundData; else showData" class="container mx-auto w-full h-full">
-  <p class="text-center mt-40  text-8xl">Not Found Data</p>
+  <p class="text-center mt-40 text-8xl">Not Found Data</p>
 </div>
 <ng-template #showData>
   <div class="container w-full h-full mx-auto mt-10">
     <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-      <div *ngFor="let ele of data">
+      <div *ngFor="let ele of data; let i = index">
         <img
-          class="h-96 w-auto rounded-lg"
+          class="h-96 w-auto rounded-lg hover:scale-105 ease-in duration-500 hover:cursor-pointer group-hover:block"
           [src]="
             ele.thumbnail
               ? ele.thumbnail
               : 'https://climate.onep.go.th/wp-content/uploads/2020/01/default-image.jpg'
           "
           [alt]="ele.thumbnail"
+          (click)="toPreview(ele)"
         />
         <div class="mt-2 flex justify-center">
+          <button
+            type="button"
+            id="addItems"
+            (click)="increment(i)"
+            class="rounded-lg w-8 h-8 hover:bg-red-100"
+          >
+            <p class="text-red-500 text-xl">+</p>
+          </button>
           <input
-            type="number"
+            type="text"
             [id]="ele.id_product"
             #itemsInput
-            class="rounded-lg h-9 border-2 border-black"
-            placeholder="จำนวนสินค้า"
+            class="w-14 rounded-lg h-9 p-2.5 cursor-default text-center"
+            [value]="this.counter[i] === 0 ? '' : this.counter[i]"
+            readonly
           />
           <button
             type="button"
             id="addItems"
-            (click)="addNewItems(itemsInput.value)"
-            class="ml-2 rounded-lg w-28 border-2 border-black"
+            (click)="decrement(i)"
+            class="rounded-lg w-8 h-8 hover:bg-red-100"
           >
-            เพิ่มลงในตะกร้า
+            <p class="text-red-500 text-xl">-</p>
+          </button>
+          <button
+            type="button"
+            id="addItems"
+            (click)="addNewItems(itemsInput.value)"
+            class="ml-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+              />
+            </svg>
           </button>
         </div>
       </div>
     </div>
   </div>
 </ng-template>
-
-<app-footer></app-footer>

@@ -20,6 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AdminCategoryComponent } from './admin/category/category.component';
 import { AdminContactComponent } from './admin/contact/contact.component';
 import { AdminContactPreviewComponent } from './admin/contact/preview/preview.component';
+import { ProductPreviewComponent } from './product/preview/preview.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { AdminContactPreviewComponent } from './admin/contact/preview/preview.co
     AddComponent,
     AdminCategoryComponent,
     AdminContactComponent,
-    AdminContactPreviewComponent
+    AdminContactPreviewComponent,
+    ProductPreviewComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
