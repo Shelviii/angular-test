@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'category', component: CategoryComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'admin', component: AdminComponent },
+  { path: 'admin', component: AdminComponent},
   { path: 'admin/welcome', component: WelcomeComponent },
   { path: 'admin/add', component: AddComponent },
   { path: 'admin/edit/:id', component: AddComponent },
@@ -31,6 +31,7 @@ const routes: Routes = [
     path: 'admin/contact/preview/:id',
     component: AdminContactPreviewComponent,
   },
+  { path: '**', component: HomeComponent },
 ];
 
 @NgModule({

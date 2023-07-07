@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { DatabaseService } from '../database/database.service';
 import { Product } from '../database/enum/product.enum';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -10,10 +10,10 @@ import { ProductService } from '../product.service';
   styleUrls: ['./product.component.css'],
 })
 export class ProductComponent implements OnInit {
-  items: number = 0;
-  data: Product[] = [];
   counter: number[] = [];
+  data: Product[] = [];
   foundData: boolean = true;
+  items: number = 0;
 
   constructor(
     private dataService: DatabaseService,
@@ -38,7 +38,22 @@ export class ProductComponent implements OnInit {
         this.data = res;
       });
     }
+
+    this.items = this.productService.getItems().items;
   }
+
+  addNewItems(value: string) {
+    this.productService.insertItems(Number(value));
+    this.items += Number(value);
+  }
+
+  insertToCart(data: Product) {
+    localStorage.setItem(
+      'inCartData',
+      JSON.stringify(this.productService.dataToCart(data))
+    );
+  }
+
   increment(index: number) {
     this.counter[index] += 1;
   }
@@ -55,9 +70,5 @@ export class ProductComponent implements OnInit {
     this.router.navigate(['product/preview/', data.id_product], {
       state: { data: data },
     });
-  }
-
-  addNewItems(value: string) {
-    this.items += Number(value);
   }
 }

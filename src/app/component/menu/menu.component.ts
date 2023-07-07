@@ -1,8 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { DatabaseService } from '../../../app/database/database.service';
-import { Category } from '../../../app/database/enum/product.enum';
+import { Component, Input, OnInit } from '@angular/core';
+import { Product } from '../../../app/database/enum/product.enum';
 import { Router } from '@angular/router';
-import { ProductService } from 'src/app/product.service';
+import { InCart, ProductService } from 'src/app/product.service';
 
 interface MenuType {
   title: string;
@@ -14,25 +13,28 @@ interface MenuType {
   styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent implements OnInit {
-  @Input() cart: number = 0;
+  @Input() itemsInCart: number = 0;
+  inCartData: Product[] = [];
   menuBar: MenuType[] = [
     { title: 'หน้าแรก', path: '/' },
     { title: 'สินค้าทั้งหมด', path: '/product' },
     { title: 'หมวดหมู่สินค้า', path: '/category' },
     { title: 'ติดต่อเรา', path: '/contact' },
   ];
-  category: Category[] = [];
-  toggleCate: boolean = false;
 
   constructor(private router: Router, private productService: ProductService) {}
 
-  ngOnInit(): void {console.log(this.cart,'menu');
+  ngOnInit(): void {
+    const product: InCart = this.productService.getItems();
+    this.itemsInCart = product.items;
+    const local: any = localStorage.getItem('inCartData');
+    const json = JSON.parse(local);
+    const { items, data } = json;
+    if(product.items != items){
+      this.itemsInCart = items
+    }
   }
-  
-  getItem() {
-    const data = this.productService.getItems();
-    this.cart = data;
-  }
+
   navigate() {
     this.router.navigate(['cart']);
   }

@@ -1,1 +1,22 @@
-<p>cart works!</p>
+<app-menu></app-menu>
+<div class="container mx-auto mt-10">
+  <div class="flex flex-col">
+    <div class="flex-col mt-2 w-full" *ngFor="let ele of data">
+      <div class="w-full p-2.5 border-b-2 border-slate-500 flex">
+        <div class="flex">
+          <div class="w-96 rounded-lg border-2 border-slate-500 flex">
+            <img [src]="ele.thumbnail" class="rounded-lg object-cover" />
+          </div>
+
+          <div class="flex-grow flex-col w-full ml-4">
+            <p>ชื่อสินค้า : {{ele.title}}</p>
+            <p>หมวดหมู่สินค้า : {{ele.cate}} </p>
+            <p>ราคาสินค้า : {{ele.price}}</p>
+            <p>รายละเอียดสินค้า : {{ele.detail}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

@@ -1,3 +1,4 @@
+<app-menu [itemsInCart]="items"></app-menu>
 <div *ngIf="!foundData; else showData" class="container mx-auto w-full h-full">
   <p class="text-center mt-40 text-8xl">Not Found Data</p>
 </div>
@@ -43,7 +44,7 @@
           <button
             type="button"
             id="addItems"
-            (click)="addNewItems(itemsInput.value)"
+            (click)="addNewItems(itemsInput.value); insertToCart(ele)"
             class="ml-2"
           >
             <svg
@@ -66,3 +67,4 @@
     </div>
   </div>
 </ng-template>
+<app-footer></app-footer>
